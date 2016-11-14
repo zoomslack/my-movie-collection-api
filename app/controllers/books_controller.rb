@@ -11,10 +11,11 @@ class BooksController < ApplicationController
   end
 
   def create
-    user = User.find_by(name: book_params[:user_id])
+    #user = User.find_by(name: book_params[:user_id])
     book = Book.new(book_params)
 
-    book.user_id = user_id if user
+    #book.user_id = user_id if user
+    puts(book_params)
 
     if book.save
       render json: {status: 200, book:book}
@@ -39,9 +40,7 @@ class BooksController < ApplicationController
     params.required(:book).permit(
       :title,
       :author,
-      :publisher,
-      :publication_date,
-      :user_id
+      :publisher
     )
   end
 end
